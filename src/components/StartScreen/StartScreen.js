@@ -1,4 +1,9 @@
 import React, { useState} from "react";
+import './StartScreen.css'
+import xLogo from '../../assets/icon-x.svg';
+import oLogo from '../../assets/icon-o.svg';
+import logo from '../../assets/logo.svg'
+
 
 const StartScreen = ({ onStartGame}) => {
 
@@ -20,18 +25,24 @@ const StartScreen = ({ onStartGame}) => {
 
     return (
         <div className="welcome-screen">
-            <h1>PICK PLAYER 1'S MARK</h1>
+
+            <img className="logo" src={logo} alt=""/>
+            
             <div className="select-player">
+                <h1>PICK PLAYER 1'S MARK</h1>
+                <div className="select-player-box">
+                    <button className="X-button" onClick={() => handlePlayerChoice('X')}><img src={xLogo} alt=""/></button>
+                    <button className="O-button" onClick={() => handlePlayerChoice('O')}><img src={oLogo} alt=""/></button>
+                </div>
 
-                <button onClick={() => handlePlayerChoice('X')}>X</button>
-                <button onClick={() => handlePlayerChoice('O')}>O</button>
+                <p>REMEMBER: X GOES FIRST</p>
 
             </div>
-            <div>
-                <button onClick={() => handleOpponentChoice('CPU')}>NEW GAME (VS CPU)</button>
-                <button onClick={() => handleOpponentChoice('PLAYER')}> NEW GAME (VS PLAYER)</button>
+            
+            <button className="cpu-button" onClick={() => handleOpponentChoice('CPU')}>NEW GAME (VS CPU)</button>
+            <button className="player-button" onClick={() => handleOpponentChoice('PLAYER')}> NEW GAME (VS PLAYER)</button>
 
-            </div>
+            
 
         </div>
     )

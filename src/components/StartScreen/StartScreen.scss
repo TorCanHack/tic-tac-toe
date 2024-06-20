@@ -1,0 +1,124 @@
+@mixin center-column-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+@mixin center-row-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.welcome-screen {
+
+    .logo {
+        display: block;
+        width: 71px;
+        height: 32px;
+        margin: 2rem auto;
+       
+        
+    }
+
+    .select-player {
+        
+
+        @include center-column-flex();
+        width: 327px;
+        height: 205px;
+        color: #A8BFC9;
+        background-color: #1F3641;
+        border-radius: 1rem;
+        box-shadow: inset 0px -8px 0px #10212A;
+
+        h1 {
+            font-size: 1rem;
+        }
+        
+
+        .select-player-box {
+
+            
+            background-color: #1A2A33;
+            width: 279px;
+            height: 72px;
+            border-radius: 1rem;
+            @include center-row-flex();
+            
+            
+
+
+            button {
+
+                background-color: #1A2A33;
+                width: 131px;
+                height: 54px;
+                border: none;
+                border-radius: 12px;
+
+
+                img {
+                    width: 32px;
+                    height: 32px;
+                    filter: grayscale(100%) brightness(100%);
+                    margin: 0 12px;
+                }
+            }
+
+            .X-button:focus {
+                background-color: #A8BFC9;
+
+                img {
+
+                    filter: grayscale(100%) brightness(10%);
+                    
+                }
+            }
+
+            .O-button:focus {
+                background-color: #A8BFC9;
+
+                img {
+                   
+                    filter: grayscale(100%) brightness(10%);
+                    
+                }
+            }
+
+            
+        }
+
+    }
+
+    .cpu-button {
+
+        width: 327px;
+        height: 56px;
+        background-color: #F2B137;
+        border: none;
+        border-radius: 1rem;
+        box-shadow: inset 0px -8px 0px #CC8B13;
+        margin: 1rem 0;
+        font-weight: bold;
+    }
+
+    .player-button {
+        width: 327px;
+        height: 56px;
+        background-color: #31C3BD;
+        border: none;
+        border-radius: 1rem;
+        box-shadow: inset 0px -8px 0px #118C87;
+        font-weight: bold;
+
+    }
+}
+
+
+
+

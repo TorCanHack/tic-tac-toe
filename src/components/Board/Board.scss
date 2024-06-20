@@ -1,0 +1,96 @@
+@mixin flex-space-between{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+@mixin flex-row-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.board {
+    width: 328px;
+    height: 516px;
+    margin-top: -5rem;
+    
+    
+
+    .XOlogo-status-and-restartLogo{
+
+        @include flex-space-between();
+        margin-bottom: 3rem;
+
+        .status {
+            width: 96px;
+            height: 40px;
+            background-color: #1F3641;
+            border-radius: 6px;
+            box-shadow: inset 0px -4px 0px #10212A;
+            color: #A8BFC9;
+            @include flex-row-center();
+
+            .xlogo-status {
+                width: 16px;
+                height: 16px;
+                filter: grayscale(100%) brightness(100%);
+                margin-right: 6px;
+            }
+
+            .ologo-status {
+                width: 16px;
+                height: 16px;
+                filter: grayscale(100%) brightness(100%);
+                margin-right: 6px;
+            }
+        }
+
+    }
+
+    .board-row {
+        
+        display: flex
+    }
+
+   
+
+    .scoreboard{
+        @include flex-space-between();
+
+        b {
+            font-size: 1.25rem;
+        }
+
+        .x-score {
+
+            padding-top: 10px;
+            width: 96px;
+            height: 64px;
+            background-color: #31C3BD;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+         .o-score {
+            padding-top: 10px;
+            width: 96px;
+            height: 64px;
+            background-color: #F2B137;
+            text-align: center;
+            border-radius: 10px;
+        }
+         .ties {
+            padding-top: 10px;
+            width: 96px;
+            height: 64px;
+            background-color: #A8BFC9;
+            text-align: center;
+            border-radius: 10px;
+        }
+        
+    }
+}

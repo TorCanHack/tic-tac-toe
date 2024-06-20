@@ -2,5 +2,8 @@
   border-radius: 10px;
   width: 96px;
   height: 96px;
-  margin: 9px;
+  margin: 8px;
+  background-color: #1F3641;
+  box-shadow: inset 0px -6px 0px #10212A;
+  border: none;
 }/*# sourceMappingURL=Square.css.map */

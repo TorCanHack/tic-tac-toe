@@ -1,5 +1,5 @@
 import React from "react";
-import '../Square/Square.css'
+import './Square.css'
 
 
 

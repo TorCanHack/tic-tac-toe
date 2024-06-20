@@ -1,58 +1,50 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Square from "../Square/Square";
+import './Board.css'
 import xLogo from '../../assets/icon-x.svg';
 import oLogo from '../../assets/icon-o.svg';
+import logo from '../../assets/logo.svg';
+import restartIcon from '../../assets/icon-restart.svg';
 
-const Board = ({ opponent }) => {
-    const [xIsNext, setXIsNext] = useState(true);
-    const [squares, setSquares] = useState(Array(9).fill(null));
-    const [xWins, setXWins] = useState(0);
-    const [oWins, setOWins] = useState(0);
-    const [ties, setTies] = useState(0);
-    const [gameOver, setGameOver] = useState(false);
-    const [winner, setWinner] = useState(null);
-
-
-
-    const makeCpuMove = useCallback(() => {
-        const newSquares = squares.slice();
-        const availableIndices = newSquares.map((square, index) => square == null ? index : null).filter(val => val != null);
-
-        if (availableIndices.length > 0) {
-            const cpuMoveIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
-            newSquares[cpuMoveIndex] = xIsNext ? "X" : "O";
-            setSquares(newSquares);
-            setXIsNext(!xIsNext);
-        }
-    }, [squares, xIsNext]);
-
-    useEffect(() => {
-        
-        if (opponent === 'CPU' && !xIsNext && !calculateWinner(squares)) {
-            // Delay the CPU move to simulate thinking time and avoid instant moves
-            const timeoutId = setTimeout(() => {
-                makeCpuMove();
-            }, 1000); // 1 second delay
+const Board = ({ opponent, xIsNext, setXIsNext, onGameEnd, gameOver, setGameOver, playerChoice, handleRestart, squares, setSquares,makeCpuMove, xWins,oWins, ties }) => {
     
-            // Clear the timeout if the component unmounts to avoid memory leaks
+    
+    useEffect(() => {
+
+        if (!gameOver && opponent === 'CPU' && ((playerChoice === 'X' && !xIsNext) || (playerChoice === 'O' && xIsNext))){
+            const timeoutId = setTimeout(() =>{
+                makeCpuMove();
+            }, 1000)
+
             return () => clearTimeout(timeoutId);
         }
-    }, [xIsNext, squares, opponent, makeCpuMove]);
+           
+    }, [xIsNext, opponent, squares, makeCpuMove, playerChoice, gameOver]);
 
     useEffect(() => {
-        
-    })
-    
+        const winner = calculateWinner(squares);
+        if (winner && !gameOver){
+            setGameOver(true)
+            onGameEnd(winner);
+        } else if (!squares.includes(null) && !gameOver){
+            setGameOver(true);
+            onGameEnd('Tie');
+        }
+    }, [squares, onGameEnd, gameOver]);
 
-    function handleClick(i) {
-        if (squares[i] || calculateWinner(squares)) {
+   
+
+  
+    const handleClick = (i) => {
+        if (squares[i] || gameOver) {
             return;
         }
         const nextSquares = squares.slice();
         nextSquares[i] = xIsNext ? "X" : "O";
         setSquares(nextSquares);
         setXIsNext(!xIsNext);
-    }
+    };
+
 
     const renderSquare = (i) => {
         return (
@@ -65,20 +57,26 @@ const Board = ({ opponent }) => {
         )
     }
 
-    const winner = calculateWinner(squares);
     let status;
-    if (winner) {
-        status = "Winner: " + winner;
-    } else {
-        status = "Next player: " + (xIsNext ? "X" : 'O');
+    if (!calculateWinner(squares)) {
+        status = (
+            <div className="status">
+                {(xIsNext ? <img className="xlogo-status" src={xLogo} alt=""/> : <img className="ologo-status" src={oLogo} alt=""/>)}
+                Turn
+            </div>
+        )
     }
 
 
-   
     
     return (
-        <>
-            <div className="status">{status}</div>
+        <div className="board">
+            <div className="XOlogo-status-and-restartLogo">
+                <img className="board-logo" src={logo} alt=""/>
+                {status}
+                <button onClick={() => handleRestart()}><img className="restartIcon" src={restartIcon} alt=""/></button>
+            </div>
+
             <div className="board-row">
                 {renderSquare(0)}
                 {renderSquare(1)}
@@ -97,10 +95,14 @@ const Board = ({ opponent }) => {
                 {renderSquare(8)}
 
             </div>
-     
-            
-       
-        </>
+            <div className="scoreboard">
+                <p className="x-score">X {playerChoice === 'X' ? "(YOU)" : "(CPU)"} <br/><b>{xWins}</b></p>
+                <p className="o-score">O {playerChoice === 'O' ? "(YOU)" : "(CPU)"} <br/><b>{oWins}</b></p>
+                <p className="ties">TIES <br/><b>{ties}</b></p>
+
+            </div>
+               
+        </div>
     )
 }
 

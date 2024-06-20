@@ -1,0 +1,70 @@
+.board {
+  width: 328px;
+  height: 516px;
+  margin-top: -5rem;
+}
+.board .XOlogo-status-and-restartLogo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+.board .XOlogo-status-and-restartLogo .status {
+  width: 96px;
+  height: 40px;
+  background-color: #1F3641;
+  border-radius: 6px;
+  box-shadow: inset 0px -4px 0px #10212A;
+  color: #A8BFC9;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.board .XOlogo-status-and-restartLogo .status .xlogo-status {
+  width: 16px;
+  height: 16px;
+  filter: grayscale(100%) brightness(100%);
+  margin-right: 6px;
+}
+.board .XOlogo-status-and-restartLogo .status .ologo-status {
+  width: 16px;
+  height: 16px;
+  filter: grayscale(100%) brightness(100%);
+  margin-right: 6px;
+}
+.board .board-row {
+  display: flex;
+}
+.board .scoreboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.board .scoreboard b {
+  font-size: 1.25rem;
+}
+.board .scoreboard .x-score {
+  padding-top: 10px;
+  width: 96px;
+  height: 64px;
+  background-color: #31C3BD;
+  text-align: center;
+  border-radius: 10px;
+}
+.board .scoreboard .o-score {
+  padding-top: 10px;
+  width: 96px;
+  height: 64px;
+  background-color: #F2B137;
+  text-align: center;
+  border-radius: 10px;
+}
+.board .scoreboard .ties {
+  padding-top: 10px;
+  width: 96px;
+  height: 64px;
+  background-color: #A8BFC9;
+  text-align: center;
+  border-radius: 10px;
+}/*# sourceMappingURL=Board.css.map */

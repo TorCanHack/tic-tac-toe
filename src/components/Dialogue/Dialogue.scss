@@ -1,0 +1,71 @@
+
+.overlay {
+    width: 375px;
+    height: 667px;
+    background-color: black;
+    position: relative;
+    right: 1.5rem;
+    bottom: 34.5rem;
+    opacity: 0.9;
+    z-index: 1;
+}
+.dialogue {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: -1.5rem;
+    bottom: 5rem;
+    width: 375px;
+    height: 228px;
+    background-color: #1F3641;
+    z-index: 2;
+    text-align: center;
+
+    .winner-loser-message {
+        color: #A8BFC9;
+        font-weight: bold;
+    }
+
+    .winner-of-round {
+        font-size: 24px;
+        
+
+        .winner-of-round-xlogo, .winner-of-round-ologo {
+            position: relative;
+            top: 6px;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+    }
+
+    .quit-button {
+
+        width: 76px;
+        height: 52px;
+        color: #1A2A33;
+        font-weight: bold;
+        background-color: #A8BFC9;
+        border: none;
+        border-radius: 12px;
+        box-shadow: inset 0px -4px 0px #6B8997;
+        font-size: 1rem;
+        margin: 0 1rem;
+
+    }
+
+    .nextround-button {
+        width: 146px;
+        height: 52px;
+        color: #1A2A33;
+        background-color: #F2B137;
+        font-weight: bold;
+        border: none;
+        border-radius: 12px;
+        box-shadow: inset 0px -4px 0px #CC8B13;
+        font-size: 1rem;
+        
+    }
+}

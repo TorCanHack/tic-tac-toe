@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+@mixin center-column-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+body {
+
+    @include center-column-flex();
+    font-family: 'Outfit', sans-serif;
+
+    main {
+        
+        @include center-column-flex();
+        width: min(100%, 375px);
+        background-color: #1A2A33;
+        height: 667px;
+
+        .App {
+
+            position: relative;
+            width: 327px;
+            height: 429px;
+        }
+    }
+  
+}
