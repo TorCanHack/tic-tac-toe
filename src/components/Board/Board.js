@@ -6,7 +6,7 @@ import oLogo from '../../assets/icon-o.svg';
 import logo from '../../assets/logo.svg';
 import restartIcon from '../../assets/icon-restart.svg';
 
-const Board = ({ opponent, xIsNext, setXIsNext, onGameEnd, gameOver, setGameOver, playerChoice, handleRestart, squares, setSquares,makeCpuMove, xWins,oWins, ties }) => {
+const Board = ({ opponent, xIsNext, setXIsNext, onGameEnd, gameOver, setGameOver, playerChoice, handleRestart, squares, setSquares,makeCpuMove, xWins,oWins, ties, winningSquares, setWinningSquares, winningPlayer, setWinningPlayer }) => {
     
     
     useEffect(() => {
@@ -22,16 +22,17 @@ const Board = ({ opponent, xIsNext, setXIsNext, onGameEnd, gameOver, setGameOver
     }, [xIsNext, opponent, squares, makeCpuMove, playerChoice, gameOver]);
 
     useEffect(() => {
-        const winner = calculateWinner(squares);
-        if (winner && !gameOver){
+        const result = calculateWinner(squares);
+        if (result && !gameOver){
             setGameOver(true)
-            onGameEnd(winner);
+            setWinningSquares(result.line)
+            setWinningPlayer(result.winner)
+            onGameEnd(result.winner);
         } else if (!squares.includes(null) && !gameOver){
             setGameOver(true);
             onGameEnd('Tie');
         }
     }, [squares, onGameEnd, gameOver]);
-
    
 
   
@@ -45,14 +46,19 @@ const Board = ({ opponent, xIsNext, setXIsNext, onGameEnd, gameOver, setGameOver
         setXIsNext(!xIsNext);
     };
 
+    
 
     const renderSquare = (i) => {
+        const isWinningSquare = winningSquares.includes(i);
         return (
             <Square 
                 value={squares[i]}
                 onSquareClick={() => handleClick(i)}
                 xImage={xLogo}
                 oImage={oLogo}
+                xIsNext={xIsNext}
+                isWinningSquare={isWinningSquare}
+                winningPlayer={isWinningSquare ? winningPlayer : null}
             />
         )
     }
@@ -62,7 +68,7 @@ const Board = ({ opponent, xIsNext, setXIsNext, onGameEnd, gameOver, setGameOver
         status = (
             <div className="status">
                 {(xIsNext ? <img className="xlogo-status" src={xLogo} alt=""/> : <img className="ologo-status" src={oLogo} alt=""/>)}
-                Turn
+                TURN
             </div>
         )
     }
@@ -74,7 +80,7 @@ const Board = ({ opponent, xIsNext, setXIsNext, onGameEnd, gameOver, setGameOver
             <div className="XOlogo-status-and-restartLogo">
                 <img className="board-logo" src={logo} alt=""/>
                 {status}
-                <button onClick={() => handleRestart()}><img className="restartIcon" src={restartIcon} alt=""/></button>
+                <button className="restart-button" onClick={() => handleRestart()}><img className="restartIcon" src={restartIcon} alt=""/></button>
             </div>
 
             <div className="board-row">
@@ -121,7 +127,7 @@ const calculateWinner = (squares) => {
     for (let i = 0; i <lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a]
+            return {winner: squares[a], line: [a, b,c]};
         }
 
     }

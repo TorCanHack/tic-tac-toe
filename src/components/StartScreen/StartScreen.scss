@@ -119,6 +119,64 @@
     }
 }
 
+@media screen and (min-width: 768px) {
+
+    .welcome-screen {
+        .select-player {
+            width: 460px;
+            height: 205px;
+
+            .select-player-box {
+
+                width: 412px;
+                
+                button {
+                    width: 198px;
+                }
+            }
+        }
+
+        .cpu-button {
+            width: 460px;
+        }
+
+        .player-button {
+            width: 460px;
+        }
+    }
+    
+}
+
+@media screen and (min-width: 1440px) {
+
+    .welcome-screen{
+
+        .select-player {
+
+            .select-player-box{
+
+                .X-button:hover, .O-button:hover {
+                    cursor: pointer;
+                    background-color: #10212A;
+                }
+            }
+        }
+    }
+
+    .cpu-button {
+
+        font-size: 1.25rem;
+        cursor: pointer;
+
+    }
+
+    .player-button {
+        font-size: 1.25rem;
+        cursor: pointer;
+    }
+    
+}
+
 
 
 

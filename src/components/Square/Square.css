@@ -6,4 +6,28 @@
   background-color: #1F3641;
   box-shadow: inset 0px -6px 0px #10212A;
   border: none;
+}
+
+.winning-square-x {
+  background-color: #31C3BD;
+}
+
+.dark-square {
+  filter: grayscale(100%) brightness(10%);
+}
+
+.winning-square-o {
+  background-color: #F2B137;
+}
+
+@media screen and (min-width: 768px) {
+  .square {
+    width: 140px;
+    height: 140px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .square:hover {
+    cursor: pointer;
+  }
 }/*# sourceMappingURL=Square.css.map */

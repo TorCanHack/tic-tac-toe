@@ -3,11 +3,13 @@
     width: 375px;
     height: 667px;
     background-color: black;
-    position: relative;
-    right: 1.5rem;
-    bottom: 34.5rem;
-    opacity: 0.9;
+    position: absolute;
+    left: -1.5rem;
+    bottom: 26.5rem;
+    opacity: 0.7;
     z-index: 1;
+    margin-bottom: -34rem;
+    
 }
 .dialogue {
     position: absolute;
@@ -22,6 +24,8 @@
     background-color: #1F3641;
     z-index: 2;
     text-align: center;
+    
+    
 
     .winner-loser-message {
         color: #A8BFC9;
@@ -67,5 +71,60 @@
         box-shadow: inset 0px -4px 0px #CC8B13;
         font-size: 1rem;
         
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    
+
+    .overlay {
+
+        width: 768px;
+        height: 1024px;
+        left: -9.5rem;
+        bottom: 16.8rem;
+        
+        
+    }
+
+    .dialogue {
+        width: 768px;
+        height: 266px;
+        left: -9.6rem;
+        overflow: hidden;
+
+        .winner-loser-message {
+            margin-bottom: -3rem;
+        }
+
+        .winner-of-round {
+            font-size: 40px;
+            margin-bottom: 1rem;
+            
+    
+            .winner-of-round-xlogo, .winner-of-round-ologo {
+                position: relative;
+                top: 14px;
+                width: 64px;
+                height: 64px;
+                margin-right: 10px;
+            }
+        }
+    }
+    
+}
+
+@media screen and (min-width: 1440px) {
+
+    .overlay {
+        height: 900px;
+        width: 1440px;
+        left: -30.5rem;
+        bottom: 20.5rem;
+    }
+    .dialogue {
+        width: 1440px;
+        left: -30.5rem;
     }
 }

@@ -17,6 +17,8 @@ function App() {
   const [winner, setWinner] = useState(null);
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [restart, setRestart] = useState(false);
+  const [winningSquares, setWinningSquares] = useState([]);
+  const [winningPlayer, setWinningPlayer] = useState(null); 
 
   const startGame = (choice, opponentType) => {
     setPlayerChoice(choice);
@@ -79,23 +81,15 @@ const handleNextRound = () => {
     setWinner(null); // Reset winner
     // Set the turn to the player who didn't start the previous round
     setXIsNext(true);
+    setWinningSquares([]);
+    setWinningPlayer(null)
   }
  
   return (
     <div className="App">
       {!gameStarted ? (<StartScreen onStartGame={startGame}/>) : 
-      (<Board opponent={opponent} xIsNext={xIsNext} onGameEnd={handleGameEnd} setXIsNext={setXIsNext} playerChoice={playerChoice} handleRestart={handleRestart} squares={squares} setSquares={setSquares} gameOver={gameOver} setGameOver={setGameOver} makeCpuMove={makeCpuMove} xWins={xWins} oWins={oWins} ties={ties}/>)}
-       {gameOver && (
-                <Dialogue
-                    winner={winner}
-                    onNextRound={handleNextRound}
-                    onQuit={handleQuit}
-                    opponent={opponent}
-                    playerChoice={playerChoice}
-                />
-            )}
-            
-
+      (<Board opponent={opponent} xIsNext={xIsNext} onGameEnd={handleGameEnd} setXIsNext={setXIsNext} playerChoice={playerChoice} handleRestart={handleRestart} squares={squares} setSquares={setSquares} gameOver={gameOver} setGameOver={setGameOver} makeCpuMove={makeCpuMove} xWins={xWins} oWins={oWins} ties={ties} winningSquares={winningSquares} setWinningSquares={setWinningSquares} winningPlayer={winningPlayer} setWinningPlayer={setWinningPlayer}/>)}
+       {gameOver && (<Dialogue winner={winner} onNextRound={handleNextRound} onQuit={handleQuit} opponent={opponent} playerChoice={playerChoice} />)}
     </div>
   );
 }
