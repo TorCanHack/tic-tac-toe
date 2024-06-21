@@ -101,4 +101,7 @@
     width: 1440px;
     left: -30.5rem;
   }
+  .dialogue .quit-button:hover, .dialogue .nextround-button:hover {
+    cursor: pointer;
+  }
 }/*# sourceMappingURL=Dialogue.css.map */

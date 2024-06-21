@@ -126,5 +126,9 @@
     .dialogue {
         width: 1440px;
         left: -30.5rem;
+
+        .quit-button:hover, .nextround-button:hover {
+            cursor: pointer;
+        }
     }
 }
